@@ -3,17 +3,62 @@ import { Product } from "./product.model";
 
 // ----> create single products
 const createProductIntoDB = async (payload: IProduct) => {
-  const result = await Product.create(payload);
-  return result;
+  try {
+    const result = await Product.create(payload);
+    if (!result) {
+      throw new Error("Product creation filed!");
+    }
+    return result;
+  } catch (error: any) {
+    throw new Error(error.message || "Product creation filed!");
+  }
 };
 
 // ----> get all products
 const getAllProductsFromDB = async () => {
-  const result = await Product.find();
-  return result;
+  try {
+    const result = await Product.find();
+    if (!result) {
+      throw new Error("Products not found!");
+    }
+    return result;
+  } catch (error: any) {
+    throw new Error(error.message || "Products not found!");
+  }
+};
+
+// ----> get single products
+const getSingleProductsFromDB = async (_id: string) => {
+  try {
+    const result = await Product.findOne({ _id });
+    if (!result) {
+      throw new Error("Product not found!");
+    }
+    return result;
+  } catch (error: any) {
+    throw new Error(error.message || "Product not found!");
+  }
+};
+
+// ----> put or update single products
+const updateSingleProductsFromDB = async (
+  _id: string,
+  updateData: Partial<IProduct>,
+) => {
+  try {
+    const result = await Product.findOneAndUpdate({ _id }, updateData);
+    if (!result) {
+      throw new Error("Product update filed!");
+    }
+    return result;
+  } catch (error: any) {
+    throw new Error(error.message || "Product update filed!");
+  }
 };
 
 export const ProductServices = {
   createProductIntoDB,
   getAllProductsFromDB,
+  getSingleProductsFromDB,
+  updateSingleProductsFromDB,
 };
