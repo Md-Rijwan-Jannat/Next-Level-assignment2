@@ -28,6 +28,7 @@ export const productSchema = new Schema<IProduct>({
     type: String,
     required: true,
     trim: true,
+    unique: true,
   },
   description: {
     type: String,
