@@ -1,4 +1,4 @@
-import { Schema } from "mongoose";
+import { Schema, model } from "mongoose";
 import { IInventory, IProduct, IVariants } from "./product.interface";
 
 export const variantsSchema = new Schema<IVariants>({
@@ -57,3 +57,5 @@ export const productSchema = new Schema<IProduct>({
     required: true,
   },
 });
+
+export const Product = model<IProduct>("Product", productSchema);
