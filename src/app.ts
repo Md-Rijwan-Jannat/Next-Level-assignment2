@@ -10,8 +10,7 @@ app.use(cors());
 // application routes here
 
 app.get("/", (req, res) => {
-  var a = 0;
-  res.send("Hello World!");
+  res.send("Hello Worldddddd!");
 });
 
 export default app;
