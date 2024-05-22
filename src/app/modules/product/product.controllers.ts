@@ -28,7 +28,6 @@ const createProduct = async (req: Request, res: Response) => {
 const getProducts = async (req: Request, res: Response) => {
   try {
     const { searchTerm } = req.query;
-    console.log(req.query);
 
     let result;
     if (searchTerm) {
