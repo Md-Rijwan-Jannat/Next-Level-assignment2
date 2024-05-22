@@ -1,5 +1,6 @@
 import { z } from "zod"; // Adjust the import path according to your project structure
 
+// ------> Order zod schema
 export const orderValidationSchema = z.object({
   email: z
     .string({ required_error: "Email is required" })

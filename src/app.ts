@@ -1,6 +1,7 @@
 import express, { NextFunction, Request, Response } from "express";
 import cors from "cors";
 import { ProductRouters } from "./app/modules/product/product.routes";
+import { OrdersRoutes } from "./app/modules/order/order.routes";
 const app = express();
 
 // parser middleware
@@ -11,6 +12,7 @@ app.use(cors());
 
 // application routes here
 app.use("/api/products", ProductRouters);
+app.use("/api/orders", OrdersRoutes);
 
 app.get("/", (req, res) => {
   res.send("Product server is running!");

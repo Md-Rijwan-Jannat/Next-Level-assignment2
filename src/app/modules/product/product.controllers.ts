@@ -2,11 +2,11 @@ import { Request, Response } from "express";
 import { ProductServices } from "./product.services";
 import { productValidationSchema } from "./product.validation";
 
-// ----> create a single products
+// ----> create a single products controller
 const createProduct = async (req: Request, res: Response) => {
   try {
-    const { product: productData } = await req.body;
-    const productValidateUsingZod = productValidationSchema.parse(productData); // ---> product validate using zod
+    const product = await req.body;
+    const productValidateUsingZod = productValidationSchema.parse(product); // ---> product validate using zod
     const result = await ProductServices.createProductIntoDB(
       productValidateUsingZod,
     );
@@ -24,7 +24,7 @@ const createProduct = async (req: Request, res: Response) => {
   }
 };
 
-// ----> Combine the get all products and search products because Endpoint is required
+// ----> Combine the get all products and search products controller because Endpoint is required
 const getProducts = async (req: Request, res: Response) => {
   try {
     const { searchTerm } = req.query;
@@ -33,14 +33,15 @@ const getProducts = async (req: Request, res: Response) => {
     let result;
     if (searchTerm) {
       result = await ProductServices.searchProductsFromDB(searchTerm as string);
-      if (result.length == 0) {
-        res.status(404).json({
-          success: false,
-          message: "Product not found!",
-        });
-      }
     } else {
       result = await ProductServices.getAllProductsFromDB();
+    }
+
+    if (result.length == 0) {
+      res.status(404).json({
+        success: false,
+        message: "Product not found!",
+      });
     }
 
     res.status(200).json({

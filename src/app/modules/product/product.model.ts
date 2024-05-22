@@ -1,6 +1,7 @@
 import { Schema, model } from "mongoose";
 import { IInventory, IProduct, IVariants } from "./product.interface";
 
+// ------> variants schema
 export const variantsSchema = new Schema<IVariants>({
   type: {
     type: String,
@@ -12,6 +13,7 @@ export const variantsSchema = new Schema<IVariants>({
   },
 });
 
+// ------> inventory schema
 export const inventorySchema = new Schema<IInventory>({
   quantity: {
     type: Number,
@@ -23,6 +25,7 @@ export const inventorySchema = new Schema<IInventory>({
   },
 });
 
+// ------> main schema
 export const productSchema = new Schema<IProduct>({
   name: {
     type: String,
@@ -59,4 +62,5 @@ export const productSchema = new Schema<IProduct>({
   },
 });
 
+// ------> main product model
 export const Product = model<IProduct>("Product", productSchema);

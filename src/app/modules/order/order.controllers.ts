@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
 import { OrderServices } from "./order.services";
 
-// -----> Create a order controller
+// ------> Create a order controller
 const createOrder = async (req: Request, res: Response) => {
   try {
-    const { order: orderData } = await req.body;
-    const result = await OrderServices.createOrderIntoDB(orderData);
+    const order = await req.body;
+    const result = await OrderServices.createOrderIntoDB(order);
     res.status(202).json({
       success: true,
       message: "Order created successfully!",
@@ -20,10 +20,11 @@ const createOrder = async (req: Request, res: Response) => {
   }
 };
 
-// -----> Get all order and specific customer all orders controller because Endpoint is required
+// ------> Get all order and specific customer all orders controller because Endpoint is required
 const getOrders = async (req: Request, res: Response) => {
   try {
     const { email } = req.query;
+    console.log(req.query);
 
     let result;
     if (email) {
@@ -31,7 +32,15 @@ const getOrders = async (req: Request, res: Response) => {
     } else {
       result = await OrderServices.getAllOrderFromDB();
     }
-    res.status(202).json({
+
+    if (result.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: "Orders not found!",
+      });
+    }
+
+    res.status(200).json({
       success: true,
       message: email
         ? "Orders fetched successfully for user email!"
@@ -41,7 +50,7 @@ const getOrders = async (req: Request, res: Response) => {
   } catch (error: any) {
     res.status(500).json({
       success: false,
-      message: error.message || "Orders fetched filed!!",
+      message: error.message || "Orders fetch failed!",
       error,
     });
   }

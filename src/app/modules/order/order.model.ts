@@ -1,11 +1,11 @@
 import { Schema, model } from "mongoose";
 import { IOrder } from "./order.interface";
 
+// ------> Order schema
 export const ordersSchema = new Schema<IOrder>({
   email: {
     type: String,
     required: true,
-    unique: true,
     trim: true,
   },
   productId: {
@@ -19,7 +19,7 @@ export const ordersSchema = new Schema<IOrder>({
     trim: true,
   },
   quantity: {
-    tye: Number,
+    type: Number,
     required: true,
     trim: true,
   },
