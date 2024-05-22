@@ -1,7 +1,7 @@
 import { IProduct } from "./product.interface";
 import { Product } from "./product.model";
 
-// ----> create single products
+// ------> Create single products service
 const createProductIntoDB = async (payload: IProduct) => {
   try {
     const result = await Product.create(payload);
@@ -14,7 +14,7 @@ const createProductIntoDB = async (payload: IProduct) => {
   }
 };
 
-// ----> get all products
+// ------> Get all products service
 const getAllProductsFromDB = async () => {
   try {
     const result = await Product.find();
@@ -27,7 +27,7 @@ const getAllProductsFromDB = async () => {
   }
 };
 
-// ----> get single products
+// ------> Get single product service
 const getSingleProductsFromDB = async (_id: string) => {
   try {
     const result = await Product.findOne({ _id });
@@ -40,7 +40,7 @@ const getSingleProductsFromDB = async (_id: string) => {
   }
 };
 
-// ----> put or update single products
+// ------> Update single product service
 const updateSingleProductsFromDB = async (
   _id: string,
   updateData: Partial<IProduct>,
@@ -56,7 +56,7 @@ const updateSingleProductsFromDB = async (
   }
 };
 
-// ----> delete single product from should be database
+// ------> Delete single product service
 const deleteSingleProductFromDB = async (_id: string) => {
   try {
     const result = await Product.deleteOne({ _id });
@@ -69,7 +69,7 @@ const deleteSingleProductFromDB = async (_id: string) => {
   }
 };
 
-// ----> search products from database
+// ------> Search products service
 const searchProductsFromDB = async (searchTerm: string) => {
   try {
     const result = await Product.find({ $text: { $search: searchTerm } });

@@ -1,14 +1,14 @@
-// variants interface
+// -----> variants interface
 export interface IVariants {
   type: string;
   value: string;
 }
-// inventory interface
+// -----> inventory interface
 export interface IInventory {
   quantity: number;
   inStock: boolean;
 }
-// main product interface
+// ------> main product interface
 export interface IProduct {
   name: string;
   description: string;

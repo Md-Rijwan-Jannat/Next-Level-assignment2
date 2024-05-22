@@ -24,6 +24,7 @@ const createOrder = async (req: Request, res: Response) => {
 const getOrders = async (req: Request, res: Response) => {
   try {
     const { email } = req.query;
+    console.log(req.query);
 
     let result;
     if (email) {

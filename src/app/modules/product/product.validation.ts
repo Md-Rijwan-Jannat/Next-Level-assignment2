@@ -14,7 +14,7 @@ export const inventoryValidationSchema = z.object({
   inStock: z.boolean(),
 });
 
-// ------> main product  zod schema
+// ------> main product zod schema
 export const productValidationSchema = z.object({
   name: z.string({ required_error: "Product name is required" }),
   description: z.string({ required_error: "Product description is required" }),
