@@ -4,6 +4,7 @@ import { ProductRouters } from "./app/modules/product/product.routes";
 const app = express();
 
 // parser middleware
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.text());
 app.use(cors());

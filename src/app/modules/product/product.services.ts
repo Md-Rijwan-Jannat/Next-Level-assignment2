@@ -56,9 +56,37 @@ const updateSingleProductsFromDB = async (
   }
 };
 
+// ----> delete single product from should be database
+const deleteSingleProductFromDB = async (_id: string) => {
+  try {
+    const result = await Product.deleteOne({ _id });
+    if (!result) {
+      throw new Error("Product delete filed!");
+    }
+    return result;
+  } catch (error: any) {
+    throw new Error(error.message || "Product delete filed!");
+  }
+};
+
+// ----> search products from database
+const searchProductsFromDB = async (searchTerm: string) => {
+  try {
+    const result = await Product.find({ $text: { $search: searchTerm } });
+    if (!result) {
+      throw new Error("Products not found!");
+    }
+    return result;
+  } catch (error: any) {
+    throw new Error(error.message || "Products not found!");
+  }
+};
+
 export const ProductServices = {
   createProductIntoDB,
   getAllProductsFromDB,
   getSingleProductsFromDB,
   updateSingleProductsFromDB,
+  deleteSingleProductFromDB,
+  searchProductsFromDB,
 };
