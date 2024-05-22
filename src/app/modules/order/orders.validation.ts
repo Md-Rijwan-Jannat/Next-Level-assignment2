@@ -9,7 +9,9 @@ export const orderValidationSchema = z.object({
     .number({ required_error: "Price is required" })
     .nonnegative("Price must be a non-negative number"),
   quantity: z
-    .number({ required_error: "Quantity is required" })
+    .number({
+      required_error: "Quantity is required",
+    })
     .int()
     .positive("Quantity must be a positive integer"),
 });
