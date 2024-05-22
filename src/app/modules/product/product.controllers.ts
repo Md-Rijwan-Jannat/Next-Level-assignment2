@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { ProductServices } from "./product.services";
 import { productValidationSchema } from "./product.validation";
 
-// ----> create a single products controller
+// ------> Create a single products controller
 const createProduct = async (req: Request, res: Response) => {
   try {
     const product = await req.body;
@@ -24,7 +24,7 @@ const createProduct = async (req: Request, res: Response) => {
   }
 };
 
-// ----> Combine the get all products and search products controller because Endpoint is required
+// ------> Combine the get all products and search products controller because Endpoint is required
 const getProducts = async (req: Request, res: Response) => {
   try {
     const { searchTerm } = req.query;
@@ -60,7 +60,7 @@ const getProducts = async (req: Request, res: Response) => {
   }
 };
 
-// ----> get single product
+// ------> Get single product controller
 const getSingleProduct = async (req: Request, res: Response) => {
   try {
     const { productId } = req.params;
@@ -79,7 +79,7 @@ const getSingleProduct = async (req: Request, res: Response) => {
   }
 };
 
-// ----> update single product
+// ------> Update single product controller
 const updateSingleProduct = async (req: Request, res: Response) => {
   try {
     const { productId } = req.params;
@@ -100,7 +100,7 @@ const updateSingleProduct = async (req: Request, res: Response) => {
   }
 };
 
-// ---->delete single product from should be database
+// ------> Delete single product controller
 const deleteSingleProduct = async (req: Request, res: Response) => {
   const { productId } = req.params;
   try {

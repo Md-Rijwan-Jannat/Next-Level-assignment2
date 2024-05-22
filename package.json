@@ -2,9 +2,16 @@
   "name": "apollo-level2-assignment-2",
   "version": "1.0.0",
   "main": "./dist/server.js",
+  "pre-commit": [
+    "ts.check",
+    "build",
+    "add-build"
+  ],
   "scripts": {
-    "build": "tsc",
-    "start:prod": "node ./dist/server.js",
+    "start": "node ./dist/server.js",
+    "build": "rimraf dist && tsc",
+    "ts.check": "tsc --project tsconfig.json",
+    "add-build": "git add dist",
     "start:dev": "ts-node-dev --respawn --transpile-only ./src/server.ts",
     "lint": "yarn run eslint src",
     "lint:fix": "yarn run eslint src --fix",
@@ -22,7 +29,9 @@
     "@types/node": "^20.12.12",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
+    "pre-commit": "^1.2.2",
     "prettier": "^3.2.5",
+    "rimraf": "^5.0.7",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.4.5",
     "typescript-eslint": "^7.10.0"
