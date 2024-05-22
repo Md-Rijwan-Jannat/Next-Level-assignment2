@@ -1,7 +1,7 @@
 import { IOrder } from "./order.interface";
 import { Order } from "./order.model";
 
-// -----> Create order into database
+// -----> Create order into database service
 const createOrderIntoDB = async (order: IOrder) => {
   try {
     const result = await Order.create(order);
@@ -15,7 +15,7 @@ const createOrderIntoDB = async (order: IOrder) => {
   }
 };
 
-// -----> Get all orders from database
+// -----> Get all orders from database service
 const getAllOrderFromDB = async () => {
   try {
     const result = await Order.find();
@@ -29,7 +29,7 @@ const getAllOrderFromDB = async () => {
   }
 };
 
-// -----> Get single customer all orders using email from database
+// -----> Get single customer all orders using email from database service
 const getCustomerAllOrdersFromDB = async (email: string) => {
   try {
     const result = await Order.find({ $text: { $search: email } });
