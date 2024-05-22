@@ -14,6 +14,20 @@ const createOrderIntoDB = async (order: IOrder) => {
   }
 };
 
+const getAllOrderFromDB = async () => {
+  try {
+    const result = await Order.find();
+    if (!result) {
+      throw new Error("Order fetched filed!");
+    } else {
+      return result;
+    }
+  } catch (error: any) {
+    throw new Error(error.message || "Order fetched filed!");
+  }
+};
+
 export const OrderServices = {
   createOrderIntoDB,
+  getAllOrderFromDB,
 };
